@@ -6,11 +6,12 @@
       dl.push({"event": "identify", "id": "mp-"+marketplaceId+"-admin" });
     }
 
-    dl.push({
-      event: 'feature flags',
-      featureFlags: #{feature_flags.to_json.html_safe}
-    });
-
+    if (#{feature_flag.present?}){
+       dl.push({
+         event: 'feature flags',
+         featureFlags: #{feature_flags.to_json.html_safe}
+       });
+    }
   })(dataLayer);
 
   <!-- Google Tag Manager -->

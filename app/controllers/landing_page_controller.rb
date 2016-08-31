@@ -221,8 +221,6 @@ class LandingPageController < ActionController::Metal
                          true)
     marketplace_context = marketplace_context(c, topbar_locale, request)
 
-    FeatureFlagHelper.init(request, false, false)
-
     denormalizer = build_denormalizer(
       cid: c&.id,
       locale_param: locale_param,
@@ -249,7 +247,6 @@ class LandingPageController < ActionController::Metal
                      page: denormalizer.to_tree(structure, root: "page"),
                      sections: denormalizer.to_tree(structure, root: "composition"),
                      community_context: community_context(request, landing_page_locale),
-                     feature_flags: FeatureFlagHelper.feature_flags,
                      asset_host: APP_CONFIG.asset_host,
                    }
   end

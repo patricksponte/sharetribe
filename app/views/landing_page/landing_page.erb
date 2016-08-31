@@ -53,8 +53,7 @@
 
   <% unless local_assigns.has_key?(:skip_analytics) && skip_analytics %>
     <%= render partial: "layouts/google_analytics_script",
-               locals: { feature_flags: feature_flags,
-                         community_id: community_context[:id],
+               locals: { community_id: community_context[:id],
                          google_analytics_key: community_context[:google_analytics_key] } %>
   <% end %>
 
