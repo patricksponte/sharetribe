@@ -7,8 +7,8 @@ module FeatureFlagHelper
 
   module_function
 
-  def init(request, is_admin, is_marketplace_admin)
-    RequestStore.store[:feature_flags] ||= fetch_feature_flags(request, is_admin, is_marketplace_admin)
+  def init(community_id:, user_id:, request:, is_admin:, is_marketplace_admin:)
+    RequestStore.store[:feature_flags] ||= fetch_feature_flags(community_id, user_id, request, is_admin, is_marketplace_admin)
   end
 
   def feature_enabled?(feature_name)
@@ -30,9 +30,8 @@ module FeatureFlagHelper
     RequestStore.store[:feature_flags]
   end
 
-  def fetch_feature_flags(request, is_admin, is_marketplace_admin)
-    flags_from_service = fetch_flags_from_service(community_id(request), person_id(request), is_admin, is_marketplace_admin)
-
+  def fetch_feature_flags(community_id, person_id, request, is_admin, is_marketplace_admin)
+    flags_from_service = fetch_flags_from_service(community_id, person_id, is_admin, is_marketplace_admin)
     temp_flags = fetch_temp_flags(is_admin, request.params, request.session)
 
     request.session[:feature_flags] = temp_flags
