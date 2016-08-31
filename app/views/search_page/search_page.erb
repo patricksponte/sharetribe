@@ -1,0 +1,15 @@
+<% props = {
+  discoveryAPI: {
+    url: 'somedomain.com/discovery/query'
+  },
+  i18n: {
+    locale: I18n.locale,
+    defaultLocale: I18n.default_locale
+  },
+  data: bootstrapped_data,
+  listings: [
+    { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 }, { id: 11 }, { id: 12 }
+  ]
+  }
+%>
+<%= react_component("SearchPageApp", props: props, prerender: true, id: 'searchpage-container') %>
